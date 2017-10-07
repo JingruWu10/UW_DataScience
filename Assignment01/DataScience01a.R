@@ -101,58 +101,48 @@ cat("\014")
 # Sharing Data
 
 # assign a url to variable "url"
-url <- "http://archive.ics.uci.edu/ml/machine-learning-databases/blood-transfusion/transfusion.data"
-# Download a rectangular dataset
-DATAFRAME.obj<-read.csv(url, header=TRUE)
+url <- "http://archive.ics.uci.edu/ml/machine-learning-databases/00225/Indian%20Liver%20Patient%20Dataset%20(ILPD).csv"
+ILPD <- read.csv(url, header=FALSE, stringsAsFactors=FALSE)
+head(ILPD)
 
-# present an overview of these data
 
-# How many rows and columns are in the dataframe?
-nrow(DATAFRAME.obj)
-ncol(DATAFRAME.obj)
+# Abstract: This data set contains 10 variables that are age, gender, total Bilirubin, direct Bilirubin, total proteins, albumin, A/G ratio, SGPT, SGOT and Alkphos.
 
-# See all the data
-DATAFRAME.obj
+headers <- c("age", "gender", "total Bilirubin", "direct Bilirubin", "total proteins", "albumin", "A/G ratio", "SGPT", "SGOT", "Alkphos")
 
-# view the first few rows of the data
-head(DATAFRAME.obj)
+# Associate names with the dataframe using this pattern:  names(<dataframe>) <- headers
+names(ILPD) <- headers
+head(ILPD)
 
-# view the column names
-names(DATAFRAME.obj)
+# determine the mean, median, and standard deviation (sd) of each column
+is(ILPD)
+sapply(ILPD, is)
 
-# What do these names mean?
+sapply(ILPD, length)
 
-# What are the stanrad deviation, mean, and median of each vector?
-sd(DATAFRAME.obj)
-
-is(DATAFRAME.obj)
-
-# determine the standard deviation, mean, and median for the 1st vector
-sd(DATAFRAME.obj[               , 1])
-mean(DATAFRAME.obj[, 1])
-median(DATAFRAME.obj[, 1])
-
-is(DATAFRAME.obj)
-sapply(DATAFRAME.obj, is)
-
-sapply(DATAFRAME.obj, length)
-
-summary(DATAFRAME.obj)
+summary(ILPD)
 
 # determine the standard deviation, mean, and median for each vector
-sapply(DATAFRAME.obj, sd)
-sapply(DATAFRAME.obj, mean)
-sapply(DATAFRAME.obj, median)
+sapply(ILPD, sd, na.rm = TRUE)
+sapply(ILPD, mean, na.rm = TRUE)
+sapply(ILPD, median, na.rm = TRUE)
+
+##### RESUME HERE #####
 
 # Get a profile of each column
-hist(DATAFRAME.obj$Recency, col=rgb(0,1,0,.5)) # hist(DATAFRAME.obj[, 1])
-hist(DATAFRAME.obj$Frequency, col=rgb(0,1,0,.5)) # hist(DATAFRAME.obj[, 2])
-hist(DATAFRAME.obj$Monetary, col=rgb(0,1,0,.5)) # hist(DATAFRAME.obj[, 3])
-hist(DATAFRAME.obj$Time, col=rgb(0,1,0,.5)) # hist(DATAFRAME.obj[, 4])
-hist(DATAFRAME.obj$whether, col=rgb(0,1,0,.5)) # hist(DATAFRAME.obj[, 5])
+hist(ILPD$age, col=rgb(0,1,0,.5)) 
+hist(ILPD$"total Bilirubin",  col=rgb(0,1,0,.5)) 
+hist(ILPD$"direct Bilirubin", col=rgb(0,1,0,.5)) 
+hist(ILPD$"total proteins",   col=rgb(0,1,0,.5)) 
+hist(ILPD$"albumin",    col=rgb(0,1,0,.5)) 
+hist(ILPD$"A/G ratio",  col=rgb(0,1,0,.5))  
+hist(ILPD$"SGPT",       col=rgb(0,1,0,.5)) 
+hist(ILPD$"SGOT",     col=rgb(0,1,0,.5)) 
+hist(ILPD$ "Alkphos", col=rgb(0,1,0,.5)) 
+
 
 # Correlate columns
-plot(DATAFRAME.obj)
+plot(ILPD)
 
 ############################################################################
 # A glimpse into what we will do in future lessons
