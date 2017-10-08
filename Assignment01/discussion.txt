@@ -1,0 +1,25 @@
+Join Kaggle? (comment)
+----------------------
+Leo Salemann Yup, I did the Kaggle Titanic tutorial a couple years ago. I visit Kaggle frequently for datasets; occasionally to participate in competitions. The competitions make for a great source of topics for data science projects. Here's one my team did for UW PCE Big Data Technologies: https://www.slideshare.net/LeoSalemann/predicting-moscow-real-estate-prices-with-azure-machine-learning?trk=v-feedShow less
+
+
+Matlab vs. R (comment)
+----------------------
+Leo Salemann I’m not sure, but I believe Matlab is the head of R in Engineering domains such as finite element analysis and their Simulink add on.
+
+
+
+Python VS R (comment)
+---------------------
+Leo Salemann Ha! I knew this would be the first discussion :). Python is a general-purpose language, that's used everywhere for everything. Web sites, Servers, Data Science, you name it. R is optimized for statistics (and thus optimized for data science and machine learning). A lot of R's peculiarities from the language point of view (assigning to a function !?!?) make it smother for doing mathematics. 
+
+That said, there's lots of python libraries (e.g. pandas, pixie dust) to make that language a bit smoother as well.
+
+You may wish to keep an eye on local Data Science/Data Engineering/Machine Learning job-opps. See which language they favor. 
+
+In the mean time, getting from zero-coding experience to competent Data Scientist can probably be done faster in R.Show less
+
+
+Reditor goes from Zero Coding to Data Scientist Job in 20 months (my own topic)
+-------------------------------------------------------------------------------
+Found this on Reddit a few weeks ago. A long read, but identifies numerous online learning resources, as well as interview techniques. https://www.reddit.com/r/datascience/comments/713hnw/how_i_went_from_no_coding_or_machine_learning/?st=J7SLK3QH&sh=5e4b9c9b
