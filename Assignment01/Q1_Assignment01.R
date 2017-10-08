@@ -1,4 +1,5 @@
 # UW PCE Data Science Autumn 2017 Assignment 1
+# Leo Salemann 10/7/17
 # Based on DataScience01a.R, Copyright 2017 by Ernst Henle
 ####################################################
 

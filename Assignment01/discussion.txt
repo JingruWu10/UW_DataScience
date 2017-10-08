@@ -1,3 +1,7 @@
+UW PCE Data Science
+Q1 Assignment 1 10/7/17
+Leo Salemann
+
 Join Kaggle? (comment)
 ----------------------
 Leo Salemann Yup, I did the Kaggle Titanic tutorial a couple years ago. I visit Kaggle frequently for datasets; occasionally to participate in competitions. The competitions make for a great source of topics for data science projects. Here's one my team did for UW PCE Big Data Technologies: https://www.slideshare.net/LeoSalemann/predicting-moscow-real-estate-prices-with-azure-machine-learning?trk=v-feedShow less
