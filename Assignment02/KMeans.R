@@ -24,7 +24,7 @@ source("KMeansHelper.R") # ClusterPlot. Samples for observations, clusterCenters
 # [45] 3 3 3 3 3 3 3 3 3 3 1 3 3 1 3 3 3 3 2 2 3 3
 # [67] 2 2 3 3 3 3 2 3 3 3 3 3 3 3 1 3 3
 
-# KMeans()
+# KMeans(mainTitle="test")
 # Result:  
 #            [,1]       [,2]
 # [1,]  0.0332000  0.6508000
@@ -35,7 +35,7 @@ source("KMeansHelper.R") # ClusterPlot. Samples for observations, clusterCenters
 # The function are observations that will be clustered and initial clusterCenters. 
 # returns K-mean clusterCenters
 # The function does not normalize the inputs. 
-KMeans <- function(observations = sampleObservations, clusterCenters = centersGuess)
+KMeans <- function(observations = sampleObservations, clusterCenters = centersGuess, mainTitle="")
 {   
   # Initialize the cluster labels from the previous iteration with NULL
   previousLabels <- NULL
@@ -49,13 +49,13 @@ KMeans <- function(observations = sampleObservations, clusterCenters = centersGu
     currentLabels <- findLabelOfClosestCluster(observations, clusterCenters)
     
     # Plot observations and clusterCenters
-    ClusterPlot(observations, clusterCenters, currentLabels, paste("iteration:", iteration, "old centers", sep=" "))
+    ClusterPlot(observations, clusterCenters, currentLabels, mainTitle = mainTitle, subTitle=paste("iteration:", iteration, "old centers", sep=" "))
     # If there was no change in cluster labels, then break
     if(identical(currentLabels, previousLabels)) break
     # For each cluster of observations determine its center
     clusterCenters <- calculateClusterCenters(observations, currentLabels)
     # Plot observations and clusterCenters
-    ClusterPlot(observations, clusterCenters,  currentLabels, paste("iteration:", iteration, "new centers", sep=" "))
+    ClusterPlot(observations, clusterCenters,  currentLabels, mainTitle = mainTitle, subTitle=paste("iteration:", iteration, "new centers", sep=" "))
     # remember currentLabels before currentLabels is re-assigned in the next iteration
     previousLabels <- currentLabels
   } # end of the for loop

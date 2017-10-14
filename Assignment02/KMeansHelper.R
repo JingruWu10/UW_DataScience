@@ -2,7 +2,8 @@
 # Copyright 2016 by Ernst Henle
 
 # Function plots labeled observations and centers
-ClusterPlot <- function(observations=sampleObservations, centers=centersGuess, labels=labelsRandom, theTitle="test")
+ClusterPlot <- function(observations=sampleObservations, centers=centersGuess, labels=labelsRandom, 
+                        mainTitle="test", subTitle="")
 {
   # Create the frame of a plot without contents
   x_Min <- min(observations[,1], centers[,1], na.rm=T)
@@ -10,7 +11,7 @@ ClusterPlot <- function(observations=sampleObservations, centers=centersGuess, l
   y_Min <- min(observations[,2], centers[,2], na.rm=T)
   y_Max <- max(observations[,2], centers[,2], na.rm=T)
   yLocation <- xLocation <- c()
-  plot(c(), xlab='X', ylab='Y', ylim=c(y_Min, y_Max), xlim=c(x_Min, x_Max), main=theTitle)
+  plot(c(), xlab='X', ylab='Y', ylim=c(y_Min, y_Max), xlim=c(x_Min, x_Max), main=mainTitle, sub=subTitle, asp=1)
   
   # Add observations
   uniqueLabels <- sort(unique(labels))

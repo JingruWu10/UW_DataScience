@@ -3,10 +3,10 @@
 
 rm(list=ls()) # Clear Workspace
 cat("\014") # Clear Console
-setwd("/home/vagrant/DataScience/Session02")
+setwd("/home/vagrant/git/UW_DataScience/Assignment02")
 
-# source("KMeansNorm_complete.R")
-source("KMeansNorm_skeleton.R")
+source("KMeansNorm.R")
+# source("KMeansNorm_skeleton.R")
 
 TestObservations <- as.matrix(read.csv("TestObservations.csv", header=FALSE))
 TestCenters <- matrix(c(1, 1, -2, -2, 2, -2), byrow=T, ncol=2)
@@ -15,6 +15,7 @@ TestCenters <- matrix(c(1, 1, -2, -2, 2, -2), byrow=T, ncol=2)
 hist(TestObservations[,2], col=rgb(0.2,0.5,0.5,1))
 # TestObservations Distribution in first dimension
 hist(TestObservations[,1], col=rgb(0.5,0.2,0.2,0.75), add=T)
+# hist(TestObservations[,1], col=rgb(0.5,0.2,0.2,0.75))
 # What is the single most obvious difference between these two distributions?
 
 # For each of the next 4 tests determine if clustering occurs along one or two dimensions?  Which dimensions?  Why?
