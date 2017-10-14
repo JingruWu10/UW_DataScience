@@ -1,8 +1,12 @@
 # KMeansIncomplete.R
 # Copyright 2017 by Ernst Henle
 
+rm(list=ls()) # Clear Workspace
+cat("\014") # Clear Console
+setwd("/home/vagrant/git/UW_DataScience/Assignment02")
 source("KMeansHelper.R") # ClusterPlot. Samples for observations, clusterCenters, and labels.
 
+# Can hilight the ClusterPlot() and run it.
 # ClusterPlot()
 # Returns a plot with randomly labeled observations and clusterCenters
 
@@ -34,25 +38,25 @@ source("KMeansHelper.R") # ClusterPlot. Samples for observations, clusterCenters
 KMeans <- function(observations = sampleObservations, clusterCenters = centersGuess)
 {   
   # Initialize the cluster labels from the previous iteration with NULL
-  Put code in place of this line
+  previousLabels <- NULL
   # repeat the following processes using a loop.  Prevent infinite loop with a for loop of 25 iterations
-  Put code in place of this line
+  for (iteration in 1:25)
   {
     # For each observation find the label of its closest cluster center
     Put code in place of this line
     # Plot observations and clusterCenters
     ClusterPlot(observations, clusterCenters, currentLabels)
     # If there was no change in cluster labels, then break
-    Put code in place of this line
+    if(identical(currentLabels, previousLabels)) break
     # For each cluster of observations determine its center
-    Put code in place of this line
+    calculateClusterCenters(observations, currentLabels)
     # Plot observations and clusterCenters
     ClusterPlot(observations, clusterCenters,  currentLabels)
     # remember currentLabels before currentLabels is re-assigned in the next iteration
-    Put code in place of this line
+    previousLabels <- currentLabels
   } # end of the for loop
   # Return the clusterCenters
-  Put code in place of this line
+  clusterCenters
 } # end of KMeans.
 
 # For each cluster of observations determine its center
@@ -61,23 +65,25 @@ KMeans <- function(observations = sampleObservations, clusterCenters = centersGu
 calculateClusterCenters <- function(observations=sampleObservations, clusterLabels=labelsRandom)
 {
   # How many clusterCenters will we make?  What is the maximum cluster label? 
-  Put code in place of this line
+  maxLabel <- max(clusterLabels) #would be better to take the max of the unique labels.
   # Create a matrix where each row is a cluster center.  The number of columns reflects the dimensionality of the space.
-  Put code in place of this line
+  clusterCenters <- matrix(nrow=maxLabel, ncol=ncol(observations))
   # For loop through each cluster label 
-  Put code in place of this line
+  for(currentLabel in 1:maxLabel)
   {
     # Get only the observations from one cluster
-    Put code in place of this line
+    isCluster <- currentLabel == clusterLabels 
+    observationsOfCluster <- observations[isCluster, ]
+    
     # Determine the mean of that cluster in the 1st dimension and assign this mean
     # to the 1st dimension of the center
-    Put code in place of this line
+    clusterCenters[currentLabel, 1] <- mean((observationsOfCluster[,1]))
     # Determine the mean of that cluster in the 2nd dimension and assign this mean
     # to the 2nd dimension of the center
-    Put code in place of this line
+    clusterCenters[currentLabel, 2] <- mean((observationsOfCluster[,2]))
   } # Ends the for loop through each cluster id
   # Return the clusterCenters
-  Put code in place of this line
+  clusterCenters
 } # end of calculateClusterCenters
 
 # A function that returns the cluster IDs for each observation
