@@ -39,19 +39,23 @@ KMeans <- function(observations = sampleObservations, clusterCenters = centersGu
 {   
   # Initialize the cluster labels from the previous iteration with NULL
   previousLabels <- NULL
+  currentLabels <- NULL
   # repeat the following processes using a loop.  Prevent infinite loop with a for loop of 25 iterations
   for (iteration in 1:25)
   {
+    previousLabels <- currentLabels
+    
     # For each observation find the label of its closest cluster center
-    Put code in place of this line
+    currentLabels <- findLabelOfClosestCluster(observations, clusterCenters)
+    
     # Plot observations and clusterCenters
-    ClusterPlot(observations, clusterCenters, currentLabels)
+    ClusterPlot(observations, clusterCenters, currentLabels, paste("iteration:", iteration, "old centers", sep=" "))
     # If there was no change in cluster labels, then break
     if(identical(currentLabels, previousLabels)) break
     # For each cluster of observations determine its center
-    calculateClusterCenters(observations, currentLabels)
+    clusterCenters <- calculateClusterCenters(observations, currentLabels)
     # Plot observations and clusterCenters
-    ClusterPlot(observations, clusterCenters,  currentLabels)
+    ClusterPlot(observations, clusterCenters,  currentLabels, paste("iteration:", iteration, "new centers", sep=" "))
     # remember currentLabels before currentLabels is re-assigned in the next iteration
     previousLabels <- currentLabels
   } # end of the for loop
