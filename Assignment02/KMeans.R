@@ -1,5 +1,7 @@
-# KMeansIncomplete.R
-# Copyright 2017 by Ernst Henle
+# UW PCE Data Science Autumn 2017 Assignment 2
+# Leo Salemann 10/13/17
+# Based on KMeansIncomplete.R, Copyright 2017 by Ernst Henle
+###########################################################
 
 rm(list=ls()) # Clear Workspace
 cat("\014") # Clear Console
