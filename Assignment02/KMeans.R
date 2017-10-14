@@ -40,8 +40,8 @@ source("KMeansHelper.R") # ClusterPlot. Samples for observations, clusterCenters
 KMeans <- function(observations = sampleObservations, clusterCenters = centersGuess, mainTitle="")
 {   
   # Initialize the cluster labels from the previous iteration with NULL
-  previousLabels <- NULL
   currentLabels <- NULL
+  
   # repeat the following processes using a loop.  Prevent infinite loop with a for loop of 25 iterations
   for (iteration in 1:25)
   {
