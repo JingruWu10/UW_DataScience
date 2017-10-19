@@ -1,2 +1,2 @@
 # UW_DataScience
-Assingments and projects from Univerity of Washington Certificate in Data Science
+Assignments and projects from Univerity of Washington Certificate in Data Science
