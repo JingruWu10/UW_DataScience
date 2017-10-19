@@ -1,5 +1,5 @@
 # ClassifyStudents.R
-# Copyright © 2017 by Ernst Henle.  All rights reserved
+# Copyright ? 2017 by Ernst Henle.  All rights reserved
 
 rm(list=ls()) # Clear objects from Memory
 cat("\014") # Clear Console
@@ -28,9 +28,11 @@ TrainStudents <-StudentsSplit$trainingData
 # http://www.stat.umn.edu/geyer/5931/mle/glm.pdf
 
 # Create logistic regression
-# ********** add code here
+# ********** add code here (from ppt, formula is on line 8 of CollegeStudentsDataSet_template.R
+model.GLM <- glm(formula=formula, data=TrainStudents, family="binomial") 
 # Predict the outcomes for the test data. (predict type="response")
 # ********** add code here
+predictions.GLM <- predict(model.GLM, newdata=TestStudents, type="response")
 ###################################################
 
 # Naive Bayes
@@ -53,16 +55,20 @@ library(e1071)
 # Confusion Matrices
 
 actual <- ifelse(TestStudents$CollegePlans, "Attend", "NotAttend")
-threshold <- 0.5
+threshold <- 0.7 #change this later (was 0.5)
 
 #Confusion Matrix for Logistic Regression
 # convert the predicted probabilities to predictions using a threshold
 # ********** add code here
+predictedOutcome <- ifelse(predictions.GLM > threshold,"Attend", "NotAttend") 
+
 print(" ")
 print(" -------------------------------- ")
 print("Confusion Matrix for Logistic Regression")
 # create a table to compare predicted values to actual values
-# ********** add code here
+# ********** add code here ***For setwd/getwd, see R profile.site
+table(actual, predictedOutcome)
+
 
 #Confusion Matrix for Naive Bayes
 # convert the predicted probabilities to predictions using a threshold
