@@ -16,9 +16,7 @@ PartitionWrong <- function(dataSet, fractionOfTest = 0.3)
   numberOfTestRows <- fractionOfTest * numberOfRows
   testFlag <- 1:numberOfRows <= numberOfTestRows #1:numOfTestRows get True; the rest get False
   
-  # print("here comes test flags")
-  # print(head(testFlag))
-  # >-----------<These lines are common to all Partition Functions>-----------
+   # >-----------<These lines are common to all Partition Functions>-----------
   testingData <- dataSet[testFlag, ]
   trainingData <- dataSet[!testFlag, ]
   dataSetSplit <- list(trainingData=trainingData, testingData=testingData) # this is a list of 2 items
@@ -41,16 +39,6 @@ PartitionExact <- function(dataSet, fractionOfTest = 0.3)
   # Grab the value that matchs the "fractionOfTest" distance into table
   testFlag <- x < exactThreshold
   
-  # print("here's the sorted vector")
-  # print(sortedX)
-  
-  # print("here coes test flags")
-  # print(testFlag)
-  # -------<stuff I haven't figured out yet >-------
-  
-  # ValueAtFracton <- something <= something
-  # x<-runif(numberOfRows)
-  # TestFlag <- x < ValueAtFraction
   # >-----------<These lines are common to all Partition Functions>-----------
   testingData <- dataSet[testFlag, ]
   trainingData <- dataSet[!testFlag, ]
@@ -64,11 +52,6 @@ PartitionFast <- function(dataSet, fractionOfTest = 0.3)
   # generate a random number for each row. Use runif() = random uniform
   x <- runif(numberOfRows)
   testFlag <- x < fractionOfTest
-  # print("here's fast partition")
-  # print(head(x))
-  
-  # print("here's the test flags")
-  # print(head(testFlag))
 
   # >-----------<These lines are common to all Partition Functions>-----------
   testingData <- dataSet[testFlag, ]

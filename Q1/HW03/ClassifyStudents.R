@@ -53,6 +53,28 @@ model.NB <- naiveBayes(formula=formula, data=TrainStudents)
 # Predict the outcomes for the test data. (predict type="raw")
 predictions.NB <- predict(model.NB, newdata=TestStudents, type="raw")
 ###################################################
+# Helper functions for printing cnfusion matrices
+printConfusionMatrix <- function(theConfusionMatrix)
+{
+  print(theConfusionMatrix)
+  # install package for printing percentages if not already installed.
+  if (!require("scales")) {install.packages("scales", dep=TRUE, repos=reposURL)} else {" scales is already installed "}
+  # Now that the package is installed, we want to load the package so that we can use its functions
+  library(scales) #so I can print pecentages in a lazy manner
+  
+  
+  print("Accuracy defined as fraction of predictions that are correct")
+  theAccuracy = (theConfusionMatrix[1,1] + theConfusionMatrix[2,2])/
+                (theConfusionMatrix[1,1] + theConfusionMatrix[2,1] +
+                 theConfusionMatrix[1,2] + theConfusionMatrix[2,2])
+  print(paste0("Accuracy: ",
+               "(", theConfusionMatrix[1,1], " + ", theConfusionMatrix[2,2], ")/",
+               "(", theConfusionMatrix[1,1], " + ", theConfusionMatrix[2,1], " + ",
+                    theConfusionMatrix[1,2], " + ", theConfusionMatrix[2,2], ") = ",
+                percent(round(theAccuracy, 2))
+  ))
+}
+
 
 # Confusion Matrices
 
@@ -68,46 +90,8 @@ print(" -------------------------------- ")
 print("Confusion Matrix for Logistic Regression")
 # create a table to compare predicted values to actual values
 confusionMatrixLogisticRegression <- table(predictedOutcome, actual)
-print(confusionMatrixLogisticRegression)
 
-# Anticiapated output when using
-# Wrong Partition; fractionOfTest=0.4; threshold = 0.5
-# --------------------------------
-# "Confusion Matrix for Logistic Regression"
-#              Actual
-# Predicted    Attend  NotAttend
-# Attend        934        116
-# NotAttend     759       1071
-
-
-# Logistic Regression Accuracy
-
-# install package for printing percentages if not already installed.
-if (!require("scales")) {install.packages("scales", dep=TRUE, repos=reposURL)} else {" scales is already installed "}
-# Now that the package is installed, we want to load the package so that we can use its functions
-library(scales) #so I can print pecentages in a lazy manner
-
-print("Accuracy defined as fraction of predictions that are correct")
-lrAccuracy = (confusionMatrixLogisticRegression[1,1] +
-              confusionMatrixLogisticRegression[2,2])/
-             (confusionMatrixLogisticRegression[1,1] +
-              confusionMatrixLogisticRegression[2,1] +
-              confusionMatrixLogisticRegression[1,2] +
-              confusionMatrixLogisticRegression[2,2])
-print(paste0("Accuracy: ",
-             "(", confusionMatrixLogisticRegression[1,1], " + ",
-                  confusionMatrixLogisticRegression[2,2], ")/",
-             "(", confusionMatrixLogisticRegression[1,1], " + ",
-                  confusionMatrixLogisticRegression[2,1], " + ",
-                  confusionMatrixLogisticRegression[1,2], " + ",
-                  confusionMatrixLogisticRegression[2,2], ") = ",
-             percent(round(lrAccuracy, 2))
-              ))
-
-# Anticiapated output when using
-# Wrong Partition; fractionOfTest=0.4; threshold = 0.5
-# Accuracy defined as fraction of predictions that are correct
-# Accuracy:  (934 + 1071)/(934 + 759 + 116 + 1071) = 70%
+printConfusionMatrix(confusionMatrixLogisticRegression)
 
 ###################################################################3
 #Confusion Matrix for Naive Bayes
@@ -119,24 +103,8 @@ print(" -------------------------------- ")
 print("Confusion Matrix Naive Bayes")
 # create a table to compare predicted values to actual values
 confusionMatrixNaiveBayes <- table(predictedOutcomeNB, actual)
-print(confusionMatrixNaiveBayes)
 
-print("Accuracy defined as fraction of predictions that are correct")
-nbAccuracy = (confusionMatrixNaiveBayes[1,1] +
-                confusionMatrixNaiveBayes[2,2])/
-  (confusionMatrixNaiveBayes[1,1] +
-     confusionMatrixNaiveBayes[2,1] +
-     confusionMatrixNaiveBayes[1,2] +
-     confusionMatrixNaiveBayes[2,2])
-print(paste0("Accuracy: ",
-             "(", confusionMatrixNaiveBayes[1,1], " + ",
-             confusionMatrixNaiveBayes[2,2], ")/",
-             "(", confusionMatrixNaiveBayes[1,1], " + ",
-             confusionMatrixNaiveBayes[2,1], " + ",
-             confusionMatrixNaiveBayes[1,2], " + ",
-             confusionMatrixNaiveBayes[2,2], ") = ",
-             percent(round(nbAccuracy, 2))
-))
+printConfusionMatrix(confusionMatrixNaiveBayes)
 
 
 ###################################################
