@@ -30,11 +30,9 @@ TrainStudents <-StudentsSplit$trainingData
 # http://www.stat.umn.edu/geyer/5931/mle/glm.pdf
 
 # Create logistic regression
-# ********** add code here (from ppt, formula is on line 8 of CollegeStudentsDataSet_template.R
 model.GLM <- glm(formula=formula, data=TrainStudents, family="binomial") 
 
 # Predict the outcomes for the test data. (predict type="response")
-# ********** add code here
 predictions.GLM <- predict(model.GLM, newdata=TestStudents, type="response")
 ###################################################
 
@@ -49,15 +47,11 @@ if (!require("e1071")) {install.packages("e1071", dep=TRUE, repos=reposURL)} els
 # Now that the package is installed, we want to load the package so that we can use its functions
 library(e1071)
 
-# install package with naive bayes if not alreay installed
-if (!require("scales")) {install.packages("scales", dep=TRUE, repos=reposURL)} else {" scales is already installed "}
-# Now that the package is installed, we want to load the package so that we can use its functions
-library(scales) #so I can print pecentages in a lazy manner
-
 # Create Naive Bayes model
-# ********** add code here
+model.NB <- naiveBayes(formula=formula, data=TrainStudents) 
+
 # Predict the outcomes for the test data. (predict type="raw")
-# ********** add code here
+predictions.NB <- predict(model.NB, newdata=TestStudents, type="raw")
 ###################################################
 
 # Confusion Matrices
@@ -67,7 +61,6 @@ threshold <- 0.5 #change this later (was 0.5, tried 0.7 in class)
 
 #Confusion Matrix for Logistic Regression
 # convert the predicted probabilities to predictions using a threshold
-# ********** add code here
 predictedOutcome <- ifelse(predictions.GLM > threshold,"Attend", "NotAttend") 
 
 print(" ")
@@ -88,6 +81,11 @@ print(confusionMatrixLogisticRegression)
 
 
 # Logistic Regression Accuracy
+
+# install package for printing percentages if not already installed.
+if (!require("scales")) {install.packages("scales", dep=TRUE, repos=reposURL)} else {" scales is already installed "}
+# Now that the package is installed, we want to load the package so that we can use its functions
+library(scales) #so I can print pecentages in a lazy manner
 
 print("Accuracy defined as fraction of predictions that are correct")
 lrAccuracy = (confusionMatrixLogisticRegression[1,1] +
@@ -111,16 +109,36 @@ print(paste0("Accuracy: ",
 # Accuracy defined as fraction of predictions that are correct
 # Accuracy:  (934 + 1071)/(934 + 759 + 116 + 1071) = 70%
 
-
-
+###################################################################3
 #Confusion Matrix for Naive Bayes
 # convert the predicted probabilities to predictions using a threshold
-# ********** add code here
+predictedOutcomeNB <- ifelse(predictions.NB[,2] > threshold,"Attend", "NotAttend") 
+
 print(" ")
 print(" -------------------------------- ")
 print("Confusion Matrix Naive Bayes")
 # create a table to compare predicted values to actual values
-# ********** add code here
+confusionMatrixNaiveBayes <- table(predictedOutcomeNB, actual)
+print(confusionMatrixNaiveBayes)
+
+print("Accuracy defined as fraction of predictions that are correct")
+nbAccuracy = (confusionMatrixNaiveBayes[1,1] +
+                confusionMatrixNaiveBayes[2,2])/
+  (confusionMatrixNaiveBayes[1,1] +
+     confusionMatrixNaiveBayes[2,1] +
+     confusionMatrixNaiveBayes[1,2] +
+     confusionMatrixNaiveBayes[2,2])
+print(paste0("Accuracy: ",
+             "(", confusionMatrixNaiveBayes[1,1], " + ",
+             confusionMatrixNaiveBayes[2,2], ")/",
+             "(", confusionMatrixNaiveBayes[1,1], " + ",
+             confusionMatrixNaiveBayes[2,1], " + ",
+             confusionMatrixNaiveBayes[1,2], " + ",
+             confusionMatrixNaiveBayes[2,2], ") = ",
+             percent(round(nbAccuracy, 2))
+))
+
+
 ###################################################
 # Wrong Partition; fractionOfTest=0.4; threshold = 0.5
 # 

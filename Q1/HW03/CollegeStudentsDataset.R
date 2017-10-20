@@ -16,8 +16,8 @@ PartitionWrong <- function(dataSet, fractionOfTest = 0.3)
   numberOfTestRows <- fractionOfTest * numberOfRows
   testFlag <- 1:numberOfRows <= numberOfTestRows #1:numOfTestRows get True; the rest get False
   
-  print("here coes test flags")
-  print(head(testFlag))
+  # print("here comes test flags")
+  # print(head(testFlag))
   # >-----------<These lines are common to all Partition Functions>-----------
   testingData <- dataSet[testFlag, ]
   trainingData <- dataSet[!testFlag, ]
