@@ -14,9 +14,9 @@ set.seed(4)
 # Partition data between training and testing sets
 
 # Replace the following line with a function that partitions the data correctly
-StudentsSplit <- PartitionWrong(Students, fractionOfTest=0.4) # ********** Change here
+# StudentsSplit <- PartitionWrong(Students, fractionOfTest=0.4) # ********** Change here
 # StudentsSplit <- PartitionFast(Students, fractionOfTest=0.4) # ********** Change here
-# StudentsSplit <- PartitionExact(Students, fractionOfTest=0.4) # ********** Change here
+StudentsSplit <- PartitionExact(Students, fractionOfTest=0.8) # ********** Change here
 TestStudents <- StudentsSplit$testingData
 TrainStudents <-StudentsSplit$trainingData
 
@@ -171,19 +171,21 @@ print(paste0("Accuracy: ",
 # "Confusion Matrix for Logistic Regression"
 #            Actual
 # Predicted   Attend NotAttend
-# Attend      *****    *****   add results here
-# NotAttend   *****    *****   add results here 
+# Attend         691       227
+# NotAttend      262      1715
 # Accuracy defined as fraction of predictions that are correct
-# Accuracy:   **************   add results here
+# Accuracy:   (691 + 1715)/(691 + 262 + 227 + 1715) = 83%
 #
 # --------------------------------
 # "Confusion Matrix Naive Bayes"
 #            Actual
 # Predicted   Attend NotAttend
-# Attend      *****    *****   add results here
-# NotAttend   *****    *****   add results here
+# Attend         713       273
+# NotAttend      240      1669
 # Accuracy defined as fraction of predictions that are correct
-# Accuracy:   **************   add results here
+# Accuracy:   (713 + 1669)/(713 + 240 + 273 + 1669) = 82%
+
+
 
 ###################################################
 # Assignment Item 8b
@@ -193,19 +195,19 @@ print(paste0("Accuracy: ",
 # "Confusion Matrix for Logistic Regression"
 #            Actual
 # Predicted   Attend NotAttend
-# Attend      *****    *****   add results here
-# NotAttend   *****    *****   add results here
+# Attend         687       227
+# NotAttend      260      1706
 # Accuracy defined as fraction of predictions that are correct
-# Accuracy:   **************   add results here
+# Accuracy:  (687 + 1706)/(687 + 260 + 227 + 1706) = 83%
 #
 # --------------------------------
 # "Confusion Matrix Naive Bayes"
 #            Actual
 # Predicted   Attend NotAttend
-# Attend      *****    *****   add results here
-# NotAttend   *****    *****   add results here
+# Attend         715       271
+# NotAttend      232      1662
 # Accuracy defined as fraction of predictions that are correct
-# Accuracy:   **************   add results here
+# Accuracy:   (715 + 1662)/(715 + 232 + 271 + 1662) = 83%
 
 ###################################################
 # Assignment Item 8c
@@ -215,17 +217,17 @@ print(paste0("Accuracy: ",
 # "Confusion Matrix for Logistic Regression"
 #            Actual
 # Predicted   Attend NotAttend
-# Attend      *****    *****   add results here
-# NotAttend   *****    *****   add results here
+# Attend        1306       387
+# NotAttend      572      3495
 # Accuracy defined as fraction of predictions that are correct
-# Accuracy:   **************   add results here
+# Accuracy:   (1306 + 3495)/(1306 + 572 + 387 + 3495) = 83%
 #
 # --------------------------------
 # "Confusion Matrix Naive Bayes"
 #            Actual
 # Predicted   Attend NotAttend
-# Attend      *****    *****   add results here
-# NotAttend   *****    *****   add results here
+# Attend        1379       470
+# NotAttend      499      3412
 # Accuracy defined as fraction of predictions that are correct
-# Accuracy:   **************   add results here
+# Accuracy:   (1379 + 3412)/(1379 + 499 + 470 + 3412) = 83%
 ###################################################
