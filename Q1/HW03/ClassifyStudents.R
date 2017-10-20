@@ -4,7 +4,7 @@
 rm(list=ls()) # Clear objects from Memory
 cat("\014") # Clear Console
 
-source("CollegeStudentsDataset_template.R") # Change CollegeStudentsDataset_template to CollegeStudentsDataset
+source("CollegeStudentsDataset.R") # Change CollegeStudentsDataset_template to CollegeStudentsDataset
 
 # Set repeatable random seed
 set.seed(4)
@@ -14,7 +14,9 @@ set.seed(4)
 # Partition data between training and testing sets
 
 # Replace the following line with a function that partitions the data correctly
-StudentsSplit <- PartitionWrong(Students, fractionOfTest=0.4) # ********** Change here
+# StudentsSplit <- PartitionWrong(Students, fractionOfTest=0.4) # ********** Change here
+# StudentsSplit <- PartitionFast(Students, fractionOfTest=0.4) # ********** Change here
+StudentsSplit <- PartitionExact(Students, fractionOfTest=0.4) # ********** Change here
 TestStudents <- StudentsSplit$testingData
 TrainStudents <-StudentsSplit$trainingData
 
@@ -67,8 +69,8 @@ print(" -------------------------------- ")
 print("Confusion Matrix for Logistic Regression")
 # create a table to compare predicted values to actual values
 # ********** add code here ***For setwd/getwd, see R profile.site
-table(actual, predictedOutcome)
-
+confusionMatrixLogisticRegression <- table(actual, predictedOutcome)
+print(confusionMatrixLogisticRegression)
 
 #Confusion Matrix for Naive Bayes
 # convert the predicted probabilities to predictions using a threshold
