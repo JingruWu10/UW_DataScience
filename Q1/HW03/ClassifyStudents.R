@@ -14,9 +14,9 @@ set.seed(4)
 # Partition data between training and testing sets
 
 # Replace the following line with a function that partitions the data correctly
-# StudentsSplit <- PartitionWrong(Students, fractionOfTest=0.4) # ********** Change here
+StudentsSplit <- PartitionWrong(Students, fractionOfTest=0.4) # ********** Change here
 # StudentsSplit <- PartitionFast(Students, fractionOfTest=0.4) # ********** Change here
-StudentsSplit <- PartitionExact(Students, fractionOfTest=0.4) # ********** Change here
+# StudentsSplit <- PartitionExact(Students, fractionOfTest=0.4) # ********** Change here
 TestStudents <- StudentsSplit$testingData
 TrainStudents <-StudentsSplit$trainingData
 
@@ -32,6 +32,7 @@ TrainStudents <-StudentsSplit$trainingData
 # Create logistic regression
 # ********** add code here (from ppt, formula is on line 8 of CollegeStudentsDataSet_template.R
 model.GLM <- glm(formula=formula, data=TrainStudents, family="binomial") 
+
 # Predict the outcomes for the test data. (predict type="response")
 # ********** add code here
 predictions.GLM <- predict(model.GLM, newdata=TestStudents, type="response")
@@ -48,6 +49,11 @@ if (!require("e1071")) {install.packages("e1071", dep=TRUE, repos=reposURL)} els
 # Now that the package is installed, we want to load the package so that we can use its functions
 library(e1071)
 
+# install package with naive bayes if not alreay installed
+if (!require("scales")) {install.packages("scales", dep=TRUE, repos=reposURL)} else {" scales is already installed "}
+# Now that the package is installed, we want to load the package so that we can use its functions
+library(scales) #so I can print pecentages in a lazy manner
+
 # Create Naive Bayes model
 # ********** add code here
 # Predict the outcomes for the test data. (predict type="raw")
@@ -57,7 +63,7 @@ library(e1071)
 # Confusion Matrices
 
 actual <- ifelse(TestStudents$CollegePlans, "Attend", "NotAttend")
-threshold <- 0.7 #change this later (was 0.5)
+threshold <- 0.5 #change this later (was 0.5, tried 0.7 in class)
 
 #Confusion Matrix for Logistic Regression
 # convert the predicted probabilities to predictions using a threshold
@@ -68,9 +74,44 @@ print(" ")
 print(" -------------------------------- ")
 print("Confusion Matrix for Logistic Regression")
 # create a table to compare predicted values to actual values
-# ********** add code here ***For setwd/getwd, see R profile.site
-confusionMatrixLogisticRegression <- table(actual, predictedOutcome)
+confusionMatrixLogisticRegression <- table(predictedOutcome, actual)
 print(confusionMatrixLogisticRegression)
+
+# Anticiapated output when using
+# Wrong Partition; fractionOfTest=0.4; threshold = 0.5
+# --------------------------------
+# "Confusion Matrix for Logistic Regression"
+#              Actual
+# Predicted    Attend  NotAttend
+# Attend        934        116
+# NotAttend     759       1071
+
+
+# Logistic Regression Accuracy
+
+print("Accuracy defined as fraction of predictions that are correct")
+lrAccuracy = (confusionMatrixLogisticRegression[1,1] +
+              confusionMatrixLogisticRegression[2,2])/
+             (confusionMatrixLogisticRegression[1,1] +
+              confusionMatrixLogisticRegression[2,1] +
+              confusionMatrixLogisticRegression[1,2] +
+              confusionMatrixLogisticRegression[2,2])
+print(paste0("Accuracy: ",
+             "(", confusionMatrixLogisticRegression[1,1], " + ",
+                  confusionMatrixLogisticRegression[2,2], ")/",
+             "(", confusionMatrixLogisticRegression[1,1], " + ",
+                  confusionMatrixLogisticRegression[2,1], " + ",
+                  confusionMatrixLogisticRegression[1,2], " + ",
+                  confusionMatrixLogisticRegression[2,2], ") = ",
+             percent(round(lrAccuracy, 2))
+              ))
+
+# Anticiapated output when using
+# Wrong Partition; fractionOfTest=0.4; threshold = 0.5
+# Accuracy defined as fraction of predictions that are correct
+# Accuracy:  (934 + 1071)/(934 + 759 + 116 + 1071) = 70%
+
+
 
 #Confusion Matrix for Naive Bayes
 # convert the predicted probabilities to predictions using a threshold
