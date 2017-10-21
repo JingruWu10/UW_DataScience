@@ -5,7 +5,6 @@
 
 rm(list=ls()) # Clear Workspace
 cat("\014") # Clear Console
-setwd("/home/vagrant/git/UW_DataScience/Assignment02")
 
 source("KMeansNorm.R")
 # source("KMeansNorm_skeleton.R")

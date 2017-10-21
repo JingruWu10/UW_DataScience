@@ -5,7 +5,7 @@
 
 rm(list=ls()) # Clear Workspace
 cat("\014") # Clear Console
-setwd("/home/vagrant/git/UW_DataScience/Assignment02")
+
 source("KMeansHelper.R") # ClusterPlot. Samples for observations, clusterCenters, and labels.
 
 # Can hilight the ClusterPlot() and run it.

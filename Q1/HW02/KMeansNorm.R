@@ -5,7 +5,7 @@
 
 rm(list=ls()) # Clear Workspace
 cat("\014") # Clear Console
-setwd("/home/vagrant/git/UW_DataScience/Assignment02")
+
 source("KMeansHelper.R") # ClusterPlot. Samples for observations, clusterCenters, and labels.
 source("KMeans.R")
 
@@ -18,26 +18,26 @@ KMeansNorm <- function(observations = sampleObservations, clusterCenters = cente
   if (normD1)
   {
     # Determine mean and standard deviation of 1st dimension in observations
-    observationMean <- mean((observations[,1]))
-    observationStdev <- sd((observations[,1]))
+    observationMean1 <- mean((observations[,1]))
+    observationStdev1 <- sd((observations[,1]))
     
     # normalize 1st dimension of observations
-    observations[,1] <- ((observations[,1]) - observationMean)/observationStdev
+    observations[,1] <- ((observations[,1]) - observationMean1)/observationStdev1
 
     # normalize 1st dimension of clusterCenters based on mean & stdev OF OBSERVATIONS
-    clusterCenters[,1] <- ((clusterCenters[,1]) - observationMean)/observationStdev
+    clusterCenters[,1] <- ((clusterCenters[,1]) - observationMean1)/observationStdev1
   }
   if (normD2)
   {
     # Determine mean and standard deviation of 2nd dimension in observations
-    observationMean <- mean((observations[,2]))
-    observationStdev <- sd((observations[,2]))
+    observationMean2 <- mean((observations[,2]))
+    observationStdev2 <- sd((observations[,2]))
     
     # normalize 2nd dimension of observations
-    observations[,2] <- ((observations[,2]) - observationMean)/observationStdev
+    observations[,2] <- ((observations[,2]) - observationMean2)/observationStdev2
     
     # normalize 2nd dimension of clusterCenters
-    clusterCenters[,2] <- ((clusterCenters[,2]) - observationMean)/observationStdev
+    clusterCenters[,2] <- ((clusterCenters[,2]) - observationMean2)/observationStdev2
   }
   
   KMeans(observations, clusterCenters, mainTitle=paste("NormD1=", normD1, "; NormD2=", normD2, sep=" "))
@@ -49,12 +49,12 @@ KMeansNorm <- function(observations = sampleObservations, clusterCenters = cente
   if (normD1)
   {
     # denormalize in first dimension
-    observations[,1] <- ((observations[,1])*observationMean + observationStdev)
+    clusterCenters[,1] <- ((clusterCenters[,1])*observationMean1 + observationStdev1)
   } 
   if (normD2)
   {
     # denormalize in second dimension
-    observations[,2] <- ((observations[,2])*observationMean + observationStdev)
+    clusterCenters[,2] <- ((clusterCenters[,2])*observationMean2 + observationStdev2)
   } 
   return(clusterCenters)
 }
