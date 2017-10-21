@@ -33,7 +33,7 @@ PartitionExact <- function(dataSet, fractionOfTest = 0.3)
   x <- runif(numberOfRows)
   
   # sort the rows (based on the random numbers, I guess)
-  sortedX <- sort(x)
+  # sortedX <- sort(x)
   
   # look at R's quantile function
   # quantileX <- quantile(dataSet, x)

@@ -25,7 +25,7 @@ set.seed(4)
 # Replace the following line with a function that partitions the data correctly
 # StudentsSplit <- PartitionWrong(Students, fractionOfTest=0.4) # ********** Change here
 # StudentsSplit <- PartitionFast(Students, fractionOfTest=0.4) # ********** Change here
-StudentsSplit <- PartitionExact(Students, fractionOfTest=0.8) # ********** Change here
+StudentsSplit <- PartitionExact(Students, fractionOfTest=0.4) # ********** Change here
 TestStudents <- StudentsSplit$testingData
 TrainStudents <-StudentsSplit$trainingData
 
@@ -88,7 +88,7 @@ printConfusionMatrix <- function(theConfusionMatrix)
 # Confusion Matrices
 
 actual <- ifelse(TestStudents$CollegePlans, "Attend", "NotAttend")
-threshold <- 0.5 #change this later (was 0.5, tried 0.7 in class)
+threshold <- 0.8 #change this later (was 0.5, tried 0.7 in class)
 
 #Confusion Matrix for Logistic Regression
 # convert the predicted probabilities to predictions using a threshold
@@ -194,17 +194,17 @@ printConfusionMatrix(confusionMatrixNaiveBayes)
 # "Confusion Matrix for Logistic Regression"
 #            Actual
 # Predicted   Attend NotAttend
-# Attend        1306       387
-# NotAttend      572      3495
+# Attend         338        27
+# NotAttend      609      1906
 # Accuracy defined as fraction of predictions that are correct
-# Accuracy:   (1306 + 3495)/(1306 + 572 + 387 + 3495) = 83%
+# Accuracy:   (338 + 1906)/(338 + 609 + 27 + 1906) = 78%
 #
 # --------------------------------
 # "Confusion Matrix Naive Bayes"
 #            Actual
 # Predicted   Attend NotAttend
-# Attend        1379       470
-# NotAttend      499      3412
+# Attend         498        80
+# NotAttend      449      1853
 # Accuracy defined as fraction of predictions that are correct
-# Accuracy:   (1379 + 3412)/(1379 + 499 + 470 + 3412) = 83%
+# Accuracy:   (498 + 1853)/(498 + 449 + 80 + 1853) = 82%
 ###################################################
