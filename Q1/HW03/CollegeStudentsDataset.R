@@ -1,5 +1,7 @@
-# CollegeStudentsDataset.R
-# Copyright 2017 by Ernst Henle; All rights reserved
+# UW PCE Data Science Autumn 2017 Assignment 3
+# Leo Salemann 10/20/17
+# Based on CollegeStudentsDataset.R, Copyright 2017 by Ernst Henle; All rights reserved
+####################################################################################
 
 # Read the data.  Do not change the following block
 url <- "https://www.dropbox.com/s/3uuh9nk57votrnc/SudentPlans.csv?dl=1"

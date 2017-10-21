@@ -1,5 +1,7 @@
-# ClassifyStudents.R
-# Copyright ? 2017 by Ernst Henle.  All rights reserved
+# UW PCE Data Science Autumn 2017 Assignment 3
+# Leo Salemann 10/20/17
+# Based on ClassifyStudents.R, Copyright ? 2017 by Ernst Henle.  All rights reserved
+####################################################################################
 
 rm(list=ls()) # Clear objects from Memory
 cat("\014") # Clear Console
@@ -47,6 +49,11 @@ if (!require("e1071")) {install.packages("e1071", dep=TRUE, repos=reposURL)} els
 # Now that the package is installed, we want to load the package so that we can use its functions
 library(e1071)
 
+# install package for printing percentages if not already installed.
+if (!require("scales")) {install.packages("scales", dep=TRUE, repos=reposURL)} else {" scales is already installed "}
+# Now that the package is installed, we want to load the package so that we can use its functions
+library(scales) #so I can print pecentages in a lazy manner
+
 # Create Naive Bayes model
 model.NB <- naiveBayes(formula=formula, data=TrainStudents) 
 
@@ -57,11 +64,6 @@ predictions.NB <- predict(model.NB, newdata=TestStudents, type="raw")
 printConfusionMatrix <- function(theConfusionMatrix)
 {
   print(theConfusionMatrix)
-  # install package for printing percentages if not already installed.
-  if (!require("scales")) {install.packages("scales", dep=TRUE, repos=reposURL)} else {" scales is already installed "}
-  # Now that the package is installed, we want to load the package so that we can use its functions
-  library(scales) #so I can print pecentages in a lazy manner
-  
   
   print("Accuracy defined as fraction of predictions that are correct")
   theAccuracy = (theConfusionMatrix[1,1] + theConfusionMatrix[2,2])/
