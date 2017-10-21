@@ -3,6 +3,13 @@
 # Based on ClassifyStudents.R, Copyright ? 2017 by Ernst Henle.  All rights reserved
 ####################################################################################
 
+# *** NOTE *** NOTE *** NOTE *** NOTE *** NOTE *** NOTE *** NOTE *** NOTE *** NOTE *** 
+# This code will install the R "scales" package the first time you source it.
+# You'll get a lot of info/warning info messages, but you'll see the confustion matrix
+# output if you scroll up in the console
+# Subsequent sourcings will run clean
+# *** NOTE *** NOTE *** NOTE *** NOTE *** NOTE *** NOTE *** NOTE *** NOTE *** NOTE *** 
+
 rm(list=ls()) # Clear objects from Memory
 cat("\014") # Clear Console
 
