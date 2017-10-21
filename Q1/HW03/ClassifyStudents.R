@@ -72,22 +72,22 @@ printConfusionMatrix <- function(theConfusionMatrix)
 {
   print(theConfusionMatrix)
   
-  print("Accuracy defined as fraction of predictions that are correct")
+  cat("Accuracy defined as fraction of predictions that are correct\n")
   theAccuracy = (theConfusionMatrix[1,1] + theConfusionMatrix[2,2])/
                 (theConfusionMatrix[1,1] + theConfusionMatrix[2,1] +
                  theConfusionMatrix[1,2] + theConfusionMatrix[2,2])
-  print(paste0("Accuracy: ",
+  cat(paste0("Accuracy: ",
                "(", theConfusionMatrix[1,1], " + ", theConfusionMatrix[2,2], ")/",
                "(", theConfusionMatrix[1,1], " + ", theConfusionMatrix[2,1], " + ",
                     theConfusionMatrix[1,2], " + ", theConfusionMatrix[2,2], ") = ",
-                percent(round(theAccuracy, 2))
-  ))
+                percent(round(theAccuracy, 2)), "\n"))
 }
 
 
 # Confusion Matrices
 
 actual <- ifelse(TestStudents$CollegePlans, "Attend", "NotAttend")
+# threshold <- 0.5 #change this later (was 0.5, tried 0.7 in class)
 threshold <- 0.8 #change this later (was 0.5, tried 0.7 in class)
 
 #Confusion Matrix for Logistic Regression
