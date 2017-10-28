@@ -4,19 +4,25 @@
 
 
 # 2) Confusion Matrix
+# |  | Yes | No
+# |--|-----|----
+# |P | TP  | FP
+# |N | FN  | TN
 
-# |  | Healty | Ill
-# |--|--------|----
-# |P | 85     | 3 
-# |N |  5     | 7
+# |  | ill | ok
+# |--|-----|----
+# |P |  7  |  5
+# |N |  3  | 85
 
-TP <- 85
+
+
+TP <- 7
 FP <- 5
-TN <- 7
+TN <- 85
 FN <- 3
 
 ConfusionMatrix <- matrix(c(85, 3, 5, 7), ncol = 2, byrow=TRUE)
-colnames(ConfusionMatrix) <- c("Healty","Ill")
+colnames(ConfusionMatrix) <- c("ill","ok")
 rownames(ConfusionMatrix) <- c("P","N")
 print("2. Confusion Matrix:")
 print("--------------------")

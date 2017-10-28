@@ -4,41 +4,40 @@
 # 1) Training vs. Test Data
 1.a) Training data is used to create the model. The "model trainer" tries to get the best fit possible.
 
-1.b) The best way to determine which subset of modeling data is to be used for training, is to make a random selection. 
+1.b) The two keys to selecting training data is to answer "how many?" and "which ones?" For "how many"", a typical answer is 20% to 30% of the population, unless the dataset is exteremely large. For "which ones"", the key is to make a random selection, so that the distribution of attribute values in your training set matches matches the population as a whole. If the data is ordered in some way, it may be important to randomize the ordering (or randomize your seleciton index) before proceeding.
 
 1.c) Obtain model predictions from both datasets, and compute accuracy measures.  The dataset that yields the 
 higher accuracy figures is probably the training dataset.
+
+
+
 
 # 2) 300 indivudals; 149 with the cold; 151 healthy; 
 100 tested; 
 90 healthy; 85 predicted
 10 ill;      7 predicted
 
-Confusion Matrix (for predicting "is healthy")
+Confusion Matrix (for predicting "is sick")
 
-|  | Healty | Ill
-|--|--------|----
-|P | 85     | 3 
-|N |  5     | 7
+|  | ill | ok
+|--|-----|----
+|P |  7  |  5
+|N |  3  | 85
 
 See accompanying DS400_HW04.R for forumulae
-2.a) Senstivty:    97 %
-2.b) Specificity:  58 %"
+2.a) Senstivty:    70 %
+2.b) Specificity:  94 %
 2.c) Accuracy:     92 %
-2.d) Precision:    94 %
-2.e) Recall:       97 %
-
-
+2.d) Precision:    58 %
+2.e) Recall:       70 %
 
 
 # 3) ROC charts
-3.a) The upper-right corner of the ROC graph (x=y=1, or TPR=FPR=1) corresponds to a threshold of zero.
-3.b) The origin of the ROC graph (x=y=0 OR TPR=FPR=0 coresponds to a threshold of one)
-3.c) There is no point on a ROC graph that always corresponds to a threshold of 0.5. 
+3.a) The upper-right corner of the ROC graph (x=y=1, or TPR=FPR=100%) corresponds to a threshold of zero.
+3.b) The origin of the ROC graph (x=y=0 OR TPR=FPR=%0 coresponds to a threshold of one)
+3.c) There is no point on a genral ROC graph that always corresponds to a threshold of 0.5. 
      Different models & predictions will yield different ROC curves, which will have different values 
      for a threshold of 0.5
-     
-     
      
      
 # 4) ROC chart with FPR=0.4, TPR=0.8, Accuracy 0.7, 1000 cases
@@ -98,13 +97,13 @@ Solve for FP
           0.4 = FP/(FP+300)
   0.4FP + 120 = FP
           120 = 0.6FP
-           72 = FP
+          200 = FP
   
   
 Solve for FN
  1000 = TP+FP+TN+FN 
- 1000 = 400+72+300+FN
-  228 = FN
+ 1000 = 400+200+300+FN
+  100 = FN
 
 
 Confusion Matrix  
@@ -117,8 +116,11 @@ Confusion Matrix
 Confusion Matrix  
 |Pr| Yes | No
 |--|-----|----
-|P | 400 |  72 
-|N | 228 | 300
+|P | 400 |200 
+|N | 100 |300
 
 
 4.b) Probability threshold cannot be determined.
+The best we can do is say the ROC curve has a point at (FPR = 0.4, TPR = 0.8); 
+but we can't say what the curve looks like on either side of this point 
+(besides intersections at 0,0 and 1,1).
