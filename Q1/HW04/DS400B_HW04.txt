@@ -51,10 +51,10 @@ Start with basic equations:
 
 Make some substitutions
   Acc = (TP+TN)/(TP+FP+TN+FN)
-  0.7 = (TP+TN)/1000          #1000 cases
+  0.7 = (TP+TN)/1000 #1000 cases
   700 = TP+TN
   
- 1000 = TP+FP+TN+FN           #1000 cases
+ 1000 = TP+FP+TN+FN  #1000 cases
  1000 = 700 + FP + FN
   300 = FP + FN
   
@@ -73,10 +73,15 @@ Make some substitutions
   0.8TP + 0.8FN = TP
           0.8FN = 0.2TP
              FN = 0.25TP
+            4FN = TP 
             
+Get TP in terms of TN
+          700 = TP + TN
+     700 - TN = TP    
+
             
 Solve for TN
-  700 =      TN +      TP
+  300 =      FP +      FN
   300 = (2/3)TN + (1/4)TP
   300 = (2/3)TN + (1/4)(700-TN)
   300 = (2/3)TN + 175 - (1/4)TN
@@ -114,136 +119,6 @@ Confusion Matrix
 |--|-----|----
 |P | 400 |  72 
 |N | 228 | 300
-
-
-             
-
- 
- 
-
- 
-
-
-
-
-
-
-
-......................................
-            Try this
-Accuracy = TP + TN / TP + FP + TN + FN equates to TP + TN = 700 and FN + FP = 300. We can also assume the total actual positives to be x and total actual negatives to be y, substitute them in FPR = FP / FP + TN and TPR = TP / TP + FN.
-
-Acc =  (TP + TN) / (TP + FP + TN + FN)
-TP + TN = 700
-FN + FP = 300
-TP + FN = x
-TN + FP = y
-
-FPR = FP/(FP+TN)
-0.4 = FP/y
-0.4y = FP
-
-
-TPR = TP/(TP+FN)
-0.8 = TP/x
-0.8x= TP
-
-                 Acc = (  TP + TN    )/(  TP +   FP + TN     + FN)
-                 0.7 = (0.8x + y - FP)/(0.8x + 0.4y + y - FP + x-0.8x)
-                 
-                 0.7 = (0.8x + y - FP)/(x + 1.4y - FP)
-0.7x + 0.98y - 0.7FP =  0.8x + y - FP
-               0.3FP =  0.1x + 0.02y
-           0.3(0.4y) =  0.1x + 0.2y
-               0.12y =  0.1x + 0.2y
-              -0.08y =  0.1x
-               -0.8y = x
-   
-
-......................................
-
-
-......................................
-            stuff I kinda know
-P+N = 1000
-FP+FN = 300
-FP = 0.4N
-TP = 0.8P
-
-
-0.4N + FN = 300
-......................................
-
-Grab some formulae from the wikipedia article on precision & recall
-FPR = FP/(FP+TN) = 0.4 = FP/N
-TPR = TP/(TP+FN) = 0.8 = TP/P
-Acc = (TP+TN)/(TP+TN+FP+FN) = 0.7 = (TP+TN)/(P+N)
-
-Work out values for P+N and TP+TN
-P+N = 1000
-
-Acc = (TP+TN)/(P+N)
-0.7 = (TP+TN)/1000
-TP+TN = 700
-
-Work out values for FP+FN
-0.7 = 700/(TP+TN+FP+FN)
-0.7 = 700/(700+FP+FN)
-700+FP+FN = 700/0.7
-FP+FN = 1000 - 700
-FP+FN = 300
-
-Let total postivies (P) be x and total negatives (N) by y
-x + y = 1000
-
-x = P
-x = TP + FN
-
-y = N
-y = TN + FP
-y = 1.67FN
-
-
-----------------------
-
-FPR = FP/N
-0.4 = (y-FN)/y
-0.4y = y-FN
-FN = 0.6y
-1.67FN = y
-
-
-
-
-
--------------------------------
-Getting FP from FPR
-FPR = FP/N
-0.4 = FP/500
-FP = 200
-
-TPR = TP/P
-0.8 = TP/500
-TP = 400
-
-Acc = (TP+TN)/(TP+TN+FP+FN)
-0.7 = (400+TN)/1000
-1000*0.7= 400+TN
-TN = 1000*0.7 - 400
-TN = 300 
-
-Acc = (TP+TN)/(TP+TN+FP+FN)
-0.7 = (400+300)/(400+300+200+FN)
-900+FN = 700/0.7
-FN = 700/0.7 - 900
-FN = 100
-
-4.a) One possible Confusion Matrix:
-
-|Pr| Yes | No
-|--|-----|----
-|P | 400 | FP 
-|N | FN  | TN
 
 
 4.b) Probability threshold cannot be determined.
