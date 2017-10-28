@@ -42,6 +42,8 @@ See accompanying DS400_HW04.R for forumulae
      
      
 # 4) ROC chart with FPR=0.4, TPR=0.8, Accuracy 0.7, 1000 cases
+
+4.a) Find the confusion matrix
 Start with basic equations:
   Acc = (TP+TN)/(TP+FP+TN+FN)
   FPR = FP/(FP+TN)
@@ -86,13 +88,34 @@ Solve for TP
   700 = TP + 300
   400 = TP
   
+Solve for FP
+          FPR = FP/(FP+TN)
+          0.4 = FP/(FP+300)
+  0.4FP + 120 = FP
+          120 = 0.6FP
+           72 = FP
   
   
-  
-  
-  
+Solve for FN
+ 1000 = TP+FP+TN+FN 
+ 1000 = 400+72+300+FN
+  228 = FN
 
-  
+
+Confusion Matrix  
+|Pr| Yes | No
+|--|-----|----
+|P | TP  | FP 
+|N | FN  | TN
+
+
+Confusion Matrix  
+|Pr| Yes | No
+|--|-----|----
+|P | 400 |  72 
+|N | 228 | 300
+
+
              
 
  
