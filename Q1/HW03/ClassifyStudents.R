@@ -24,11 +24,12 @@ set.seed(4)
 
 # Replace the following line with a function that partitions the data correctly
 # StudentsSplit <- PartitionWrong(Students, fractionOfTest=0.4) # ********** Change here
-# StudentsSplit <- PartitionFast(Students, fractionOfTest=0.4) # ********** Change here
-StudentsSplit <- PartitionExact(Students, fractionOfTest=0.4) # ********** Change here
+StudentsSplit <- PartitionFast(Students, fractionOfTest=0.4) # ********** Change here
+# StudentsSplit <- PartitionExact(Students, fractionOfTest=0.4) # ********** Change here
 TestStudents <- StudentsSplit$testingData
-TrainStudents <-StudentsSplit$trainingData
-
+TrainStudents <-StudentsSplit$trainingData # <==============================================================
+TrainStudents <- TestStudents
+  
 ###################################################
 
 # Logistic Regression (glm, binomial)
@@ -87,8 +88,8 @@ printConfusionMatrix <- function(theConfusionMatrix)
 # Confusion Matrices
 
 actual <- ifelse(TestStudents$CollegePlans, "Attend", "NotAttend")
-# threshold <- 0.5 #change this later (was 0.5, tried 0.7 in class)
-threshold <- 0.8 #change this later (was 0.5, tried 0.7 in class)
+threshold <- 0.5 #change this later (was 0.5, tried 0.7 in class) <===========================================
+# threshold <- 0.8 #change this later (was 0.5, tried 0.7 in class)
 
 #Confusion Matrix for Logistic Regression
 # convert the predicted probabilities to predictions using a threshold
