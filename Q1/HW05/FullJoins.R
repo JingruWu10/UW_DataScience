@@ -11,16 +11,38 @@ library(sqldf)
 
 OuterJoin1 <- function(tableA, tableB, keyA, keyB)
 {
-  m1 <- merge(tableA, tableB, all = TRUE)
+  m1 <- merge(x = tableA, y= tableB, by.x = keyA, by.y = keyB, all = TRUE)
   return(m1)
 }
 
 OuterJoin2 <- function(tableA, tableB, keyA, keyB)
 {
-  return(sqldf("SELECT * FROM tableA UNION ALL SELECT * GROM tableB"))
+  # use paste, get keys & tables.
+  # LEFT JOIN UNION 
+  
+  # select * from tableA A left join tableB B on A.keyA = B.keyB  -- A1 A2 B1 B2
+  # UNION
+  # select * from tableB B left join tableA A on A.keyA = B.keyB  -- B1 B2 A1 A2
+  # betware of funny colujn swapping, main query fixes this (M's email)
+  
+  # select A.*,  B.* from tableA A left join tableB B on A.keyA = B.keyB  -- A1 A2 B1 B2
+  # UNION
+  # select A.*, B.* from tableB B left join tableA A on A.keyA = B.keyB  -- B1 B2 A1 A2
+  
+  sqlscript <- paste("SELECT A1.*,  B1.* FROM tableA A1 left JOIN tableB B1 on A1.", keyA, " = B1.", keyB, 
+                     " UNION ",
+                     "SELECT A2.*,  B2.* FROM tableB B2 left JOIN tableA A2 on A2.", keyA, " = B2.", keyB)
+  
+  return(sqldf(sqlscript))
 }
 
 OuterJoin3 <- function(tableA, tableB, keyA, keyB)
 {
-  return(rbind(tableA, tableB))
+  sqlscript1 <- paste("SELECT A.*,  B.* FROM tableA A left JOIN tableB B on A.", keyA, " = B.", keyB)
+  sqlscript2 <- paste("SELECT A.*,  B.* FROM tableB B left JOIN tableA A on A.", keyA, " = B.", keyB)
+  
+  R1 <- sqldf(sqlscript1)
+  R2 <- sqldf(sqlscript2) 
+  
+  return(unique(rbind(R1, R2)))
 }

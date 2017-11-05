@@ -1,11 +1,24 @@
 /*
-UW PCE Data Science Autumn 2017 Assignment 5
-Leo Salemann 11/03/17
-
-
-Based on RelationalAlgebraAndSQL.sql
+RelationalAlgebraAndSQL.sql
 Copyright 2013-2015 by Ernst Henle
 
+SQL Code to accompany RelationalAlgebraAndSQL.docx
+
+{}
+Items in squiggly brackets are subscripted
+
+⋈=
+This symbol is my attempt at creating a right join symbol.
+The equal sign represents the two lines on the right of the bowtie
+
+=⋈
+By analogy, this symbol is my attempt at a left join symbol.
+
+=⋈=
+By analogy, this symbol is my attempt at a full join symbol.
+
+This code was developed in SQLServer Management Studio
+There are some differences in MySQL and SQL Fiddle:  http://sqlfiddle.com/
 */
 
 USE MatrixAlgebra
@@ -65,14 +78,15 @@ SELECT * FROM R
 WHERE RC2 = 'A';
 
 -- Join (theta Join): σ{C2 = 'B'}(R) ⋈{R.C1=S.C2} S
-SELECT * FROM (SELECT * FROM R WHERE RC2 = 'A') q1
+SELECT * FROM (SELECT * FROM R WHERE RC2 = 'A') AS q1
 JOIN S ON q1.RC1=SC2 
 
-SELECT * FROM (SELECT * FROM (SELECT * FROM R WHERE RC2 = 'A') q1
-JOIN S ON q1.RC1=SC2) q2
+SELECT * FROM (SELECT * FROM (SELECT * FROM R WHERE RC2 = 'A') AS q1
+JOIN S ON q1.RC1=SC2) AS q2
 
 
+-- FINAL ANSWER
 -- Project:  π{S.C1 R.C2}(σ{C2 = 'B'}(R) ⋈{R.C1=S.C2} S)
-SELECT SC1, RC2 FROM (SELECT * FROM (SELECT * FROM R WHERE RC2 = 'A') q1
-JOIN S ON q1.RC1=SC2) q2
-
+SELECT SC1, RC2 FROM (SELECT * FROM (SELECT * FROM R WHERE RC2 = 'A') AS q1
+JOIN S ON q1.RC1=SC2) AS q2
+-- FINAL ANSWER
