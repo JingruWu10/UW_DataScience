@@ -1,6 +1,8 @@
 /*
-RelationalAlgebraAndSQL.sql
-Copyright 2013-2015 by Ernst Henle
+# UW PCE Data Science Autumn 2017 Assignment 5
+# Leo Salemann 11/4/17
+# Based on RelationalAlgebraAndSQL.sql Copyright 2013-2015 by Ernst Henle
+####################################################################################
 
 SQL Code to accompany RelationalAlgebraAndSQL.docx
 
