@@ -102,7 +102,14 @@ SELECT Matrix1.ColumnID AS RowID
 	FROM Matrix1
 
 -- Exercise  3c 
--- skipped
+SELECT * FROM Matrix1
+SELECT * FROM Matrix3
+
+-- Anser based on stackoverflow post
+-- https://stackoverflow.com/questions/19436895/sql-how-to-to-sum-two-values-from-different-tables
+-- Answer for Exercise 3c:
+select a.RowID, a.ColumnID, a.Value+b.Value as Value from Matrix1 a join Matrix3 b 
+on a.RowID=b.RowID AND a.ColumnID = b.ColumnID
 
 
 -- Exercise after 3c
@@ -127,4 +134,3 @@ Select * FROM  Sparse_Format_Table_A;
 SELECT Sparse_Format_Table_A.C AS R 
 , Sparse_Format_Table_A.R AS C, Sparse_Format_Table_A.V AS V 
     FROM Sparse_Format_Table_A 
-
