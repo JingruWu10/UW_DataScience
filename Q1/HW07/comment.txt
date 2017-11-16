@@ -1,0 +1,4 @@
+UW PCE Data Science Autumn 2017 Assignment 7
+Leo Salemann 11/15/17
+
+Yup, this is one of my faves. Used it to stream tweets about movies, extract positive/negative sentiment, and render in PowerBI. Link: https://www.slideshare.net/LeoSalemann/a-movie-broker-dashboard-in-powerbi?trk=v-feed
