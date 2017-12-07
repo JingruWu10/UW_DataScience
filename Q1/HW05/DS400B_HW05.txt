@@ -1,0 +1,104 @@
+# UW PCE Data Science Autumn 2017 Assignment 5
+# Leo Salemann 11/04/17
+
+1. {a, b, c} is a relation that contains the tuples a, b, and c. In the following cases the tuples have arity of 1. Calculate the following:
+  a. ({1, 2, 3} ᴜ {5, 7, 11}) ∩ {2, 4, 6, 8, 10}
+          {1, 2, 3, 5, 7, 11} ∩ {2, 4, 6, 8, 10}
+     {2} <============================================= ANSWER
+
+  b. ({1, 2, 3} ∩ {2, 4, 6, 8, 10}) ᴜ ({5, 7, 11} ∩ {2, 4, 6, 8, 10})
+                               ({2}) ᴜ (<null>)
+     {2} <============================================= ANSWER
+
+
+
+2. A relation exists with 4 columns, named Column1, Column2, Column3, and Column4. Column1 is of type text. Column2, Column3, and Column4 are of type int:
+
+  a. Use relational algebra to fulfill the intent of the following SQL.
+  SELECT Column1, Column3 FROM MyTable WHERE Column2 = Column3
+  
+  πC1(R)
+  
+pi(col1, col3)(sigma stuf)
+
+    σφ(Column1, Column3(R))
+    where
+    φ: Column2 = Column3
+       c1, c2, ..., cn: Column1, Column2
+       R: MyTable
+
+  b. Reverse the order of projection and selection in your algebraic formulation from item 2a. What is the result of the new algebraic expression?
+
+    πc1, c2, ..., cn(σφ(R)) 
+    where
+     c1, c2, ..., cn: Column1, Column2
+     φ: Column2 = Column3
+     R: MyTable
+
+
+
+3. πc1, c2(σφ1(σφ2(πc1, c2, c3, c5(R)))) 
+  Where
+  • φ1: C1 = C5;
+  • φ2: C5 = “Test”;
+  • R: MyTable;
+
+  a. Write a SQL statement that declares the intent of the algebraic notation
+     SELECT c1, c2 FROM (σφ1(σφ2(πc1, c2, c3, c5(R)))) 
+     SELECT c1, c2 FROM (SELECT * FROM (σφ2(πc1, c2, c3, c5(R))) WHERE C1=C5) 
+     SELECT c1, c2 FROM (SELECT * FROM (SELECT * FROM (πc1, c2, c3, c5(R))WHERE C5 = "Test") WHERE C1=C5) 
+     SELECT c1, c2 FROM (SELECT * FROM (SELECT * FROM (SELECT C1, C2, C3, C5 FROM MyTable) WHERE C5 = "Test") WHERE C1=C5)  
+     SELECT c1, c2 FROM ((SELECT C1, C2, C3, C5 FROM MyTable) WHERE C5 = "Test") WHERE aas R WHERE C1=C5)      
+     -- Answer
+
+
+  b. Simplify the algebraic statement. 
+    SELECT c1, c2 FROM (SELECT * FROM (SELECT * FROM (SELECT C1, C2, C3, C5 FROM MyTable) WHERE C5 = "Test") WHERE C1=C5)  -- Answer
+
+    SELECT c1, c2 FROM (
+       SELECT * FROM (
+         SELECT * FROM (
+           SELECT C1, C2, C3, C5 FROM MyTable
+           ) 
+       WHERE C5 = "Test") 
+    WHERE C1=C5)
+
+
+    SELECT C1, C2 FROM (SELECT C1, C2, C5 FROM MyTable WHERE C5 = "Test") AS R WHERE C1=C5) -- Answer
+
+    pi[c1,c2](sigma[theta1](R)) -- answer
+
+
+
+
+4. SELECT * FROM T1 JOIN T2 ON T1.C1 = T2.C1
+a. Write out an equivalent in relational algebra using the join operator
+   T1 ⋈φ T2 where φ: T1.C = T2.C1
+
+
+b. Write out an equivalent in relational algebra without using the join operator
+   σφ(T1 X T2 ) where φ: T1.C1 = T2.C1
+
+
+
+5.  πS.C1, R.C2(σφ1(R) ⋈φ2 S)
+where
+• φ1 = (R.C2 = ‘A’) 
+• φ2 = (R.C1 = S.C2)
+
+Write out equivalent SQL and test this SQL using relations R and S that you create for this example. 
+
+
+SELECT S.C1, R.C2 FROM (σφ1(R) ⋈φ2 S)
+SELECT S.C1, R.C2 FROM (SELECT * FROM R WHERE C2='A' ⋈φ2 S)
+SELECT S.C1, R.C2 FROM (SELECT * FROM (SELECT * FROM R WHERE C2='A') JOIN S ON R.C1 = S.C2) -- answer
+
+SELECT S.C1, R.C2 FROM (SELECT * FROM R WHERE C2='A') AS R JOIN S ON R.C1 = S.C2
+
+
+
+
+
+
+
+
