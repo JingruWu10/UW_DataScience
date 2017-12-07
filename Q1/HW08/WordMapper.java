@@ -44,13 +44,23 @@ public class WordMapper extends Mapper<LongWritable, Text, Text, IntWritable> {
      * Java code, search the web for "Java Regex Tutorial." 
      */
     for (String word : line.split("\\W+")) {
+    
       if (word.length() > 0) {
         
         /*
          * Call the write method on the Context object to emit a key
          * and a value from the map method.
          */
-        context.write(new Text(word), new IntWritable(1));
+    	  
+    	/* LEO */
+    	int wordLength = word.length();
+    	String wordLengthString = Integer.toString(wordLength);
+    	context.write(new Text(wordLengthString), new IntWritable(1));
+    	/* LEO */
+    	
+        /* 
+         * context.write(new Text(word), new IntWritable(1));
+         */
       }
     }
   }
