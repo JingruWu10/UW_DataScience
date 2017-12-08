@@ -19,7 +19,7 @@ import org.apache.hadoop.mapreduce.Mapper;
  *   type for the reducer)
  */
 
-public class WordMapper extends Mapper<LongWritable, Text, Text, IntWritable> {
+public class WordMapper extends Mapper<LongWritable, Text, IntWritable, IntWritable> {
 
   /*
    * The map method runs once for each line of text in the input file.
@@ -53,8 +53,8 @@ public class WordMapper extends Mapper<LongWritable, Text, Text, IntWritable> {
     	  
     	   /* LEO */
     	   int wordLength = word.length();
-    	   String wordLengthString = Integer.toString(wordLength);
-    	   context.write(new Text(wordLengthString), new IntWritable(1));
+    	   /* String wordLengthString = Integer.toString(wordLength); */
+    	   context.write(new IntWritable(wordLength), new IntWritable(1));
     	   /* LEO */
     	
         /* 

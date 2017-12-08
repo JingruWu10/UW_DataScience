@@ -90,6 +90,8 @@ public class WordCount {
      */
     job.setOutputKeyClass(Text.class);
     job.setOutputValueClass(IntWritable.class);
+    job.setMapOutputKeyClass(IntWritable.class);
+    job.setMapOutputValueClass(IntWritable.class);
 
     /*
      * Start the MapReduce job and wait for it to finish.
