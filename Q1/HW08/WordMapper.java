@@ -19,6 +19,7 @@ import org.apache.hadoop.mapreduce.Mapper;
  *   type for the reducer)
  */
 
+/* LEO */
 public class WordMapper extends Mapper<LongWritable, Text, IntWritable, IntWritable> {
 
   /*

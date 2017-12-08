@@ -16,7 +16,9 @@ import org.apache.hadoop.mapreduce.Reducer;
  *   type from the mapper)
  *   The data type of the output key
  *   The data type of the output value
- */   
+ */
+
+/* LEO */
 public class SumReducer extends Reducer<IntWritable, IntWritable, IntWritable, IntWritable> {
 
   /*
