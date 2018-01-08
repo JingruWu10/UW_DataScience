@@ -1,0 +1,4 @@
+UW PCE Data Science Autumn 2017 Assignment 7
+Leo Salemann 11/15/17
+
+There's a famous quote from comedian George Carlin that says, "Think of how stupid the average person is, and realize half of them are stupider than that."  Really?  Maybe all of us are reall-really smart, except for that really dumb guy that pulls down the average. Or we're all idiots except for someone like  Stephen Hawking. I don't claim to be smarter than George, but I do believe he meant to say, “Think of how stupid the person of median-level intelligence is, and realize half of them are stupider than that." Of course, that makes the quote one standard deviation nerdier, but three sigmas less funny.

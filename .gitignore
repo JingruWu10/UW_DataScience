@@ -1,4 +1,7 @@
 
+<<<<<<< HEAD
+\.DS_Store
+=======
 Assignment02/\.Rhistory
 
 Assignment02/\.RData
@@ -28,3 +31,4 @@ Q1/HW05/\.Rhistory
 Q1/HW05/OuterJoinTest\.R
 
 Q1/HW05/sqldf_sample\.R
+>>>>>>> master
