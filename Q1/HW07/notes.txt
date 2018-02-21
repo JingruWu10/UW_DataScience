@@ -1,0 +1,40 @@
+well, that was fun.  We started with an AIC of -543.19 and got it down to 454.92 by dropping engine locaiton, fuel type, drive wheels, number of doors, city mpg, and horsepower
+
+
+
+GALTON MALES
+start with NNN
+1) drop father.sqr (lowest AIC)
+2) drop mother (lowest AIC)
+3) N0thing else helps <none> has best AIC
+All remining coefficients (3) are significant (all have 3 stars)
+Plots are similar/same except Residuals vs. Leverage, where the cooks distances are gone.
+
+
+
+START:
+make + -fuel.type + aspiration + num.of.doors + body.style + 
+    drive.wheels + -engine.location + wheel.base + length + width + 
+    height + curb.weight + engine.type + num.of.cylinders + engine.size + 
+    fuel.system + bore + -stroke + compression.ratio + -horsepower + 
+    -peak.rpm + city.mpg + highway.mp
+
+
+END:
+logPrice ~ make + aspiration + num.of.doors + body.style + 
+    drive.wheels + wheel.base + length + width + height + curb.weight + 
+    engine.type + num.of.cylinders + engine.size + fuel.system + 
+    bore + compression.ratio + city.mpg + highway.mpg,
+
+AIC went from -560.02 to -565.38
+Dropped fuel.type, engine.location, stroke + compression.ratio, horsepower, peak.rpm
+
+Most significant params were
+makebmw                 0.924413   0.246656   3.748 0.000259 ***
+height                 -0.142597   0.041057  -3.473 0.000683 ***
+curb.weight             0.555961   0.101685   5.467 2.02e-07 ***
+
+
+
+FOR JUPYTER
+Well, that was fun.  The AIC is negative; so in this case, "bigger" AIC's (i.e. "more negative") is better. We started with an AIC of -560.02 and got it to -565.38 by dropping fuel.type, engine.location, stroke + compression.ratio, horsepower, peak.rpm.  The most significant features turned out to be height, curb weight, and if the Make was a BMW.
