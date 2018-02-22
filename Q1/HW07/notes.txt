@@ -38,3 +38,11 @@ curb.weight             0.555961   0.101685   5.467 2.02e-07 ***
 
 FOR JUPYTER
 Well, that was fun.  The AIC is negative; so in this case, "bigger" AIC's (i.e. "more negative") is better. We started with an AIC of -560.02 and got it to -565.38 by dropping fuel.type, engine.location, stroke + compression.ratio, horsepower, peak.rpm.  The most significant features turned out to be height, curb weight, and if the Make was a BMW.
+
+
+SVD Regression
+Galton started with  
+M = as.matrix(males.ext[, c('mother', 'father', 'mother.sqr', 'father.sqr')])
+head(M)
+
+StepAIC suggested we drop father.sqr & mother (so we go back to using them all)
