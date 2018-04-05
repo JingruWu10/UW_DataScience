@@ -1,4 +1,4 @@
-file <- "C:\\Users\\hangzh\\OneDrive - Microsoft\\UW DS Course\\UW Course Spring 2018\\tennis.csv"
+file <- "./tennis.csv"
 data <- read.csv(file, header=TRUE, sep=",", stringsAsFactors = FALSE)
 
 # If the target column, say column class, is numerical, you need to convert it to factors in R for classification problem
