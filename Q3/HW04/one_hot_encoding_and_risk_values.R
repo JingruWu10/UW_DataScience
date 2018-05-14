@@ -1,4 +1,4 @@
-file <- "C:\\UW\\data\\Bank Data.csv"
+file <-"/home/vagrant/git/UW_DataScience/Q3/HW03/Bank Data.csv"
 
 data <- read.csv(file, sep=",", header=TRUE)
 summary(data)

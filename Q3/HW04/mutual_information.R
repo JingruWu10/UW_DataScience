@@ -2,7 +2,7 @@ X <- seq(-1, 3, 0.1)
 Y <- X^2 - 2*X + 1
 print(paste("Standard Deviation of Y=", sd(Y), sep=""))
 
-noise_var <- 0
+noise_var <- 1
 noise <- rnorm(length(X)) * noise_var
 
 Y <- Y + noise
